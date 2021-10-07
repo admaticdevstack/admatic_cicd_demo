@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  admaticwebapp:
+    build: .
+    container_name: admaticwebapp
+    ports:
+      - 5000:5000
+    networks:
+      - admaticvnet
+  redis:
+    image: redis
+    container_name: admaticredis 
+    ports:
+      - 6379:6379
+    restart: unless-stopped
+    networks:
+      - admaticvnet
+networks:
+  admaticvnet:
+    driver: bridge
